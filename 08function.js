@@ -207,3 +207,250 @@ const fn1 = (a, x, y, ...numbers) => {
 };
 
 fn1(5,6,3,7);
+
+// Output :
+// Result 6 3
+
+
+// Q11: Rest and spread operator(...)
+
+// 1)
+
+// Use rest to enclose the rest of specific user-supplied values into an array:
+function myBio(firstName, lastName, ...otherInfo) {  // Rest operator
+    return otherInfo;
+  }
+  
+  // Invoke myBio function while passing five arguments to its parameters:
+  myBio("Alan", "Turing", "BlackRock", "Web Developer", "Male");
+  
+  // The invocation above will return:
+  ["CodeSweetly", "Web Developer", "Male"]
+
+  //   2)
+  
+  // Define a function with three parameters:
+  function myBio(firstName, lastName, company) { 
+      return `${firstName} ${lastName} runs ${company}`;
+    }
+    
+  // Use spread to expand an array’s items into individual arguments:
+  myBio(...["Alan", "Turing", "BlackRock"]);
+  
+// The invocation above will return:
+// Output :  “Oluwatobi Sofela runs CodeSweetly”
+  
+
+// Q12 What is Callback Function ?
+// =>
+// A callback function is a function passed into another function as an argument,
+//  which is then invoked inside the outer function to complete some kind of routine or action.
+
+// function greeting(name) {
+//     alert(`Hello, ${name}`);
+//   }
+  
+//   function processUserInput(callback) {
+//     const name = prompt("Please enter your name.");
+//     callback(name);
+//   }
+  
+//   processUserInput(greeting);
+
+
+// Example of callback function can be map, filter, reduce, setTimeout, setInterval
+
+let myArray = [23, 64, 58, 45, 32, 81];
+
+  let mapResult = myArray.map((n, index, actualArray) => {
+    return n * 3;
+})
+
+let filterResult = myArray.filter(function (a){
+    return a%2 === 1
+})
+console.log("mapResult : ", mapResult);
+console.log("filterResult : ", filterResult);
+
+// Q13 - Arrow function 
+// =>
+// Arrow functions were introduced in ES6.
+// Arrow functions allow us to write shorter function syntax:
+
+// Arrow Function Syntax
+// The syntax of the arrow function is:
+/* let myFunction = (arg1, arg2, ...argN) => {
+    statement(s)
+} */
+
+// If the body has single statement or expression, you can write arrow function as:
+// let myFunction = (arg1, arg2, ...argN) => expression
+
+console.log("Arrow function");
+
+// Before Arrow function
+hello1 = function() {
+  return "Hello World!";
+}
+
+console.log("hello1 ", hello1());
+
+// With Arrow Function:
+hello2 = () => {
+  return "Hello World!";
+}
+
+console.log("hello2 ", hello2());
+
+// Arrow Function about "this" keyword
+// Arrow Function does NOT inherit "this" keyword
+let myObj = {
+    userName : "Ravi",
+    hello3 : () => {
+        console.log("hello3 : ", this.userName);
+    },
+    hello4: function () {
+        console.log("hello4 : ", this.userName);
+    }
+}
+
+myObj.hello3();
+myObj.hello4();
+
+// Output :
+// hello3 :  undefined
+// hello4 :  Ravi
+
+
+// function expression
+let x1 = function(x, y) {
+    return x * y;
+ }
+
+ // using arrow functions
+let x2 = (x, y) => x * y;
+
+
+// If a function has only one argument, you can omit the parentheses. For example,
+
+let greet = x => console.log(x);
+greet('Hello'); // Hello 
+
+// Arrow Function as an Expression
+// You can also dynamically create a function and use it as an expression. For example,
+
+let age = 5;
+
+let welcome = (age < 18) ?
+  () => console.log('Baby') :
+  () => console.log('Adult');
+
+welcome(); // Baby
+
+
+// If a function body has multiple statements, you need to put them inside curly brackets {}. For example,
+
+let sum5 = (a, b) => {
+    let result = a + b;
+    return result;
+}
+
+let result10 = sum5(5,7);
+console.log(result10); // 12
+
+
+// this with Arrow Function
+// Inside a regular function, this keyword refers to the function where it is called.
+
+// However, this is not associated with arrow functions. Arrow function does not have its own this. So whenever you call this, it refers to its parent scope. For example,
+
+// Inside a regular function
+
+function Person() {
+    this.name = 'Jack',
+    this.age = 25,
+    this.sayName = function () {
+
+        // this is accessible
+        console.log(this.age);
+
+        function innerFunc() {
+
+            // this refers to the global object
+            console.log(this.age);
+            console.log(this);
+        }
+
+        innerFunc();
+
+    }
+}
+
+let x6 = new Person();
+x6.sayName();
+// Output
+
+// 25
+// undefined
+// Window {}
+
+
+
+// Inside an arrow function
+
+function Person() {
+    this.name = 'Jack',
+    this.age = 25,
+    this.sayName = function () {
+
+        console.log(this.age);
+        let innerFunc = () => {
+            console.log(this.age);
+        }
+
+        innerFunc();
+    }
+}
+
+const x7 = new Person();
+x7.sayName();
+// Output
+
+// 25
+// 25
+
+
+
+// Q15 -    Arrow FUnction vs Regular function
+// =>
+// differences
+// 1) Syntax 
+
+function triangle1(base,height) {
+    return 0.5 * base * height;
+}
+
+const triangle2 = (base,height) => {
+    return 0.5 * base * height;
+}
+
+// 2) Implict return keyword
+function triangle3(base,height) {
+    return 0.5 * base * height;
+}
+
+const triangle4 = (base,height) => 0.5 * base * height;
+
+// 3) arguments keyword
+
+function argKeyword() {
+    console.log(arguments) // [Arguments] { '0': 3, '1': 7, '2': 5 }
+}
+
+argKeyword(3,7,5);
+
+const noArgsKeyword = (b) => {
+    console.log("res 0",arguments) // error : 
+}
+
+noArgsKeyword(4,6,8);
