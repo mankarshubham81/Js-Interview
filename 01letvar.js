@@ -6,15 +6,17 @@
 { 
     var a = 5;
 }
-console.log("a is => ", a);
-
-{ 
-    let b = 5;
-    console.log("b is => ", b);
-}
-
-
-{ 
-    const c = 5;
-    console.log("c is => ", c);
-}
+function letExample() {
+    console.log(y); // ReferenceError (not initialized)
+    let y = 10;
+    console.log(y); // 10
+  
+    if (true) {
+      let y = 20; // Different variable (block-scoped)
+      console.log(y); // 20
+    }
+  
+    console.log(y); // 10 (outer y is unchanged)
+  }
+  
+  letExample();
